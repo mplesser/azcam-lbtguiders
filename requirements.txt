@@ -1,0 +1,14 @@
+ipython
+rich
+
+# working directory should be /azcam
+
+-e ./azcam
+-e ./azcam-arc
+-e ./azcam-ds9
+-e ./azcam-fastapi
+-e ./azcam-imageserver
+-e ./azcam-monitor
+-e ./azcam-webtools
+
+-e ./azcam-lbtguiders

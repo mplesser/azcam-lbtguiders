@@ -1,0 +1,5 @@
+AzCamServer 4.6
+
+Special DSP for serial smear is CS3 and CS4
+
+Taras says these are 5 and 6 in version 5.1
