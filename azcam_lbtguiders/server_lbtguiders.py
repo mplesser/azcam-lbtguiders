@@ -2,7 +2,6 @@
 
 import os
 import sys
-import json
 
 import azcam
 import azcam.server
@@ -23,6 +22,8 @@ from azcam_ds9.ds9display import Ds9Display
 from azcam_imageserver.sendimage import SendImage
 from azcam_fastapi.fastapi_server import WebServer
 from azcam_webtools.status.status import Status
+
+from azcam_lbtguiders.gcs import GCS
 
 # ****************************************************************
 # parse command line arguments
@@ -154,7 +155,6 @@ dsp = config_info[option]["dsp"]
 template = os.path.join(azcam.db.datafolder, "templates", "fits_template_lbtguiders.txt")
 parfile = os.path.join(azcam.db.datafolder, "parameters", "parameters_server_lbtguiders.ini")
 azcam.db.servermode = option
-default_tool = "gcs"
 
 # ****************************************************************
 # server
@@ -184,7 +184,6 @@ if contype == "ARC":
     controller.video_speed = 1
 
     tempcon = TempConArc()
-    tempcon.control_temperature = -135.0
     tempcon.set_calibrations([0, 0, 3])
 
 elif contype == "MAG":
@@ -192,6 +191,10 @@ elif contype == "MAG":
     dspcode = f"{dsp}/gcam_ccd57.s"
     controller.timing_file = os.path.join(dspfolder, "dspcode", "dsptiming", dspcode)
     controller.use_read_lock = 1
+
+    tempcon = TempConMag()
+    tempcon.set_calibrations([0, 0, 3])
+
 else:
     raise azcam.AzcamError("invalid controller type")
 
@@ -266,8 +269,6 @@ display = Ds9Display()
 # ****************************************************************
 # GCS commands
 # ****************************************************************
-from azcam_lbtguiders.gcs import GCS
-
 gcs = GCS()
 azcam.db.tools["gcs"] = gcs
 
@@ -287,11 +288,11 @@ azcam.db.tools["parameters"].update_pars(0, "azcamserver")
 # ****************************************************************
 cmdserver = CommandServer()
 cmdserver.port = cmdserverport
+cmdserver.case_insensitive = 1
 azcam.log(f"Starting cmdserver - listening on port {cmdserver.port}")
 # cmdserver.welcome_message = "Welcome - azcam-lbtguiders server"
 cmdserver.start()
-if default_tool is not None:
-    cmdserver.default_tool = azcam.db.get(default_tool)
+cmdserver.default_tool = "gcs"
 
 # ****************************************************************
 # web server

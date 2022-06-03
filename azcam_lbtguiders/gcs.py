@@ -1,5 +1,5 @@
 """
-Contains the GCS class for LBTO guides commands from GCS.
+Contains the GCS class for LBTO guiders commands from GCS.
 """
 
 import inspect
@@ -30,6 +30,26 @@ import azcam
     expose
     expose1
     resetserver
+
+    from GCS:
+     CloseConnection # Close the connection between the AZCAM server and the image server.
+     SetExposure # Sets the exposure time, msec.
+     Guide thread_num num_images # Number of images the image server should acquire.
+     ReadTemperature n # Reads the CCD temp and dewar temp from camera n.
+     SetROI x1 x2 y1 y2 # Sets the region of Interest for the CCD readout in pixels.
+     GetDetPars # Returns the geometry of the next readout image in pixels.
+     SetMode n m  # Opens/closes camera's shutter.
+     SetGainSpeed g s # Amplification factor
+     GetPixelCount # Returns number of pixels in an image.
+     SetSyntheticImage n # Argument is 0 or 1, used to make a fake image for testing.
+     SetSocket n # Open socket from AZCAM server to image server.
+     Get version # Returns the version number.
+     Set SystemName s # Sets a system name in the server - only used for documentation purposes.
+     Get SystemName # Returns the system name.
+     Get vispixels # Returns the X and Y size of the detector.
+     setParameter item "value" "comment" # Adds an item as a header item to subsequent images.
+     getParameter item # Returns the value of  a. header item.
+     setParameter CLEARALL "" "" # Clears all header items.
         
 
 """
@@ -95,9 +115,7 @@ class GCS(object):
         return self.status
 
     def reset(self):
-
         azcam.db.tools["exposure"].reset()
-
         return self.status
 
     def resetcontroller(self):
@@ -106,7 +124,7 @@ class GCS(object):
 
     def abort(self):
         azcam.db.tools["exposure"].abort()
-        return v
+        return self.status
 
     def abortexposure(self):
         azcam.db.tools["exposure"].abort()
@@ -138,20 +156,23 @@ class GCS(object):
 
         return reply
 
-    def setexposure(self, exposure_time):
-        azcam.db.tools["exposure"].set_exposuretime(exposure_time)
+    def setexposure(self, exposure_time: int):
+        """
+        exposure_time is in msec.
+        """
+        et = exposure_time / 1000.0
+        azcam.db.tools["exposure"].set_exposuretime(et)
         return self.status
 
     def set_roi(
         self,
-        first_col=-1,
-        last_col=-1,
-        first_row=-1,
-        last_row=-1,
-        col_bin=-1,
-        row_bin=-1,
+        first_col: int,
+        last_col: int,
+        first_row: int,
+        last_row: int,
+        col_bin: int,
+        row_bin: int,
     ):
-
         azcam.db.tools["exposure"].set_roi(
             first_col,
             last_col,
@@ -160,7 +181,32 @@ class GCS(object):
             col_bin,
             row_bin,
         )
+        return self.status
 
+    def set_format(
+        self,
+        ns_total: int,
+        ns_predark: int,
+        ns_underscan: int,
+        ns_overscan: int,
+        np_total: int,
+        np_predark: int,
+        np_underscan: int,
+        np_overscan: int,
+        np_frametransfer: int,
+    ) -> None:
+
+        azcam.db.tools["exposure"].set_format(
+            ns_total,
+            ns_predark,
+            ns_underscan,
+            ns_overscan,
+            np_total,
+            np_predark,
+            np_underscan,
+            np_overscan,
+            np_frametransfer,
+        )
         return self.status
 
     def getpixelcount(self):
@@ -175,27 +221,11 @@ class GCS(object):
         temps = azcam.db.tools["tempcon"].get_temperatures()
         return self.status, temps[0], temps[1]
 
-    def closeconnection(self):
-        """not supported"""
-        azcam.log("closeconnection command not supported")
-        return self.status
-
     def setsocket(self, flag, host, port=6543):
-
         if flag == -1:
             azcam.db.tools["exposure"].set_remote_imageserver()
         else:
             azcam.db.tools["exposure"].set_remote_imageserver(host, port)
-        return self.status
-
-    def setsyntheticimage(self):
-        """not supported"""
-        azcam.log("setsyntheticimage command not supported")
-        return self.status
-
-    def setmode(self):
-        """not supported"""
-        azcam.log("setmode command not supported")
         return self.status
 
     def setparameter(self, keyword, value, comment):
@@ -204,5 +234,82 @@ class GCS(object):
 
     def resetserver(self):
         azcam.db.tools["controller"].camserver.reset_server()
+        return self.status
 
+    ###########################################################################
+    # Commands below are accepted but do nothing
+    ###########################################################################
+
+    def loadfile(self, flag1: int = 0, dspfile: str = ""):
+        """not used"""
+        return self.status
+
+    def setsyntheticimage(self):
+        """not used"""
+        return self.status
+
+    def resumeidle(self):
+        """not used"""
+        return self.status
+
+    def poweron(self):
+        """not used"""
+        return self.status
+
+    def setbiasvoltage(self):
+        """not used"""
+        return self.status
+
+    def setmode(self, flag1: int = 0, flag2: int = 0):
+        """not used"""
+        return self.status
+
+    def settemperature(self, flag: int = 0, control_temperature: float = -200):
+        """not used"""
+        return self.status
+
+    def settempcal(
+        self,
+        flag1: int = 0,
+        flag2: int = 0,
+        flag3: int = 0,
+    ):
+        """not used"""
+        return self.status
+
+    def setconfiguration(
+        self,
+        flag1: int = 0,
+        flag2: int = 0,
+        flag3: int = 0,
+        flag4: int = 0,
+        flag5: int = 0,
+    ):
+        """not used"""
+        return self.status
+
+    def setgainspeed(
+        self,
+        gain: int = 0,
+        speed: int = 0,
+    ):
+        """not used"""
+        return self.status
+
+    def writememory(
+        self,
+        flag1: str = "Y",
+        flag2: int = 0,
+        flag3: int = 0,
+        flag4: int = 0,
+    ):
+        """not used"""
+        return self.status
+
+    def closeconnection(self):
+        """not used"""
+        return self.status
+
+    def loadwaveform(self, flag1):
+        """not used"""
         return self.status
