@@ -1,2 +1,0 @@
-OBSERVER Guider / Observers
-ORIGIN   LBTO    / Observatory

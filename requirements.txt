@@ -1,10 +1,12 @@
 ipython
+pyside2
 rich
 
 # working directory should be /azcam
 
 -e ./azcam
 -e ./azcam-arc
+-e ./azcam-mag
 -e ./azcam-ds9
 -e ./azcam-fastapi
 -e ./azcam-imageserver
