@@ -143,6 +143,7 @@ if 0:
 # ****************************************************************
 # configure system options
 # ****************************************************************
+azcam.db.config_info = config_info
 cmdserverport = config_info[option]["cmdserverport"]
 azhost = config_info[option]["azhost"]
 startupflag = config_info[option]["startupflag"]
@@ -198,10 +199,7 @@ elif contype == "MAG":
 else:
     raise azcam.AzcamError("invalid controller type")
 
-if option == "ITL":
-    controller.camserver.set_server("maintenance", 2405)
-else:
-    controller.camserver.set_server("cshost", csport)
+controller.camserver.set_server(cshost, csport)
 
 # ****************************************************************
 # exposure
