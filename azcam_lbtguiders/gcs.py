@@ -135,8 +135,8 @@ class GCS(object):
         return self.status
 
     def getdetpars(self):
-        nc = azcam.db.tools["focalplane"].numcols_image
-        nr = azcam.db.tools["focalplane"].numrows_image
+        nc = azcam.db.tools["exposure"].image.focalplane.numcols_image
+        nr = azcam.db.tools["exposure"].image.focalplane.numrows_image
         return self.status, nc, nr
 
     def get(self, attribute):
@@ -148,8 +148,8 @@ class GCS(object):
         elif attribute == "servername":
             reply = self.status, azcam.db.hostname
         elif attribute == "vispixels":
-            nc = azcam.db.tools["focalplane"].numcols_image
-            nr = azcam.db.tools["focalplane"].numrows_image
+            nc = azcam.db.tools["exposure"].image.focalplane.numcols_image
+            nr = azcam.db.tools["exposure"].image.focalplane.numrows_image
             reply = self.status, nc, nr
         else:
             reply = self.status
