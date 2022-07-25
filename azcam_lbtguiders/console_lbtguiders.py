@@ -31,8 +31,7 @@ if datafolder is None:
     droot = os.environ.get("AZCAM_DATAROOT")
     if droot is None:
         # droot = "/data"
-        droot = "/azcam/azcam-lbtguiders"
-    # azcam.db.datafolder = os.path.join(droot, azcam.db.systemname)
+        droot = "/azcam/azcam-lbtguiders/datafolder"
     azcam.db.datafolder = droot
 else:
     azcam.db.datafolder = datafolder
