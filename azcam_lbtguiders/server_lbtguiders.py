@@ -68,9 +68,8 @@ azcam.db.systemfolder = azcam.utils.fix_path(azcam.db.systemfolder)
 
 droot = os.environ.get("AZCAM_DATAROOT")
 if droot is None:
-    # droot = "/data"
-    droot = "/azcam/azcam-lbtguiders/datafolder"
-azcam.db.datafolder = droot
+    droot = "/data"
+azcam.db.datafolder = os.path.join(droot, azcam.db.systemname)
 azcam.db.datafolder = azcam.utils.fix_path(azcam.db.datafolder)
 
 # ****************************************************************
