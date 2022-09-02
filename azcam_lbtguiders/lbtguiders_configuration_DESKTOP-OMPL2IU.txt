@@ -1,0 +1,37 @@
+# lbt_guider_configuration.json# This file controls the start up of AzCamServer processes.#19 may22 change MPL
+
+# StartUpFlag 0 => do not start
+#   1 => start when localhost matches AZHost
+#   2 => start on azcamserver standalone server
+#   3 => start regardless of hostname, usually for debug
+# The "server" option indicates the hostname of the azcamserver standalone server
+
+server azcamserver
+
+# Name ConType DSP CmdServerPort CSHost CSPort StartUpFlag AZHost Notes
+1g ARC agw1g 2442 192.168.2.31 2445 2 agw1-cam # 192.168.2.31
+1w ARC agw1w 2452 192.168.2.31 2455 2 agw1-cam # 192.168.2.31
+
+2g ARC agw2g 2412 192.168.2.32 2415 2 agw2-cam # 192.168.2.32
+2w ARC agw2w 2402 192.168.2.32 2405 2 agw2-cam # 192.168.2.32
+
+3g MAG agw3g 2482 agw3-cam 2425 1 agw3-cam # 192.168.2.33
+3w MAG agw3w 2492 agw3-cam 2435 1 agw3-cam # 192.168.2.33
+
+4g MAG agw4g 2462 agw4-cam 2425 1 agw4-cam # 192.168.2.34
+4w MAG agw4w 2472 agw4-cam 2435 1 agw4-cam # 192.168.2.34
+
+5g ARC agw5g 2422 192.168.2.35 2425 2 mods1-cam # 192.168.2.35
+5w ARC agw5w 2432 192.168.2.35 2435 2 mods1-cam # 192.168.2.35
+
+6g ARC agw6g 2502 192.168.2.36 2405 2 mods2-cam # 192.168.2.36
+6w ARC agw6w 2512 192.168.2.36 2415 2 mods2-cam # 192.168.2.36
+
+7g MAG agw7g 2522 agw7-cam 2425 1 agw7-cam # 192.168.2.37
+7w MAG agw7w 2532 agw7-cam 2435 1 agw7-cam # 192.168.2.37
+
+8g MAG agw8g 2542 agw8-cam 2425 1 agw8-cam # 192.168.2.38
+8w MAG agw8w 2552 agw8-cam 2435 1 agw8-cam # 192.168.2.38
+
+ITL1 ARC agw2g 2412 192.168.2.32 2415 2 agw2-cam # 192.168.2.32
+ITL2 ARC agw2w 2412 192.168.2.32 2405 2 agw2-cam # 192.168.2.32
