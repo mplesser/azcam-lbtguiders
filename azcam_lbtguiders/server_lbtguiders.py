@@ -33,29 +33,27 @@ try:
     option = sys.argv[i + 1]
 except ValueError:
     option = "menu"
-    option = "ITL1"  # debug
 
 # ****************************************************************
 # configuration menu
 # ****************************************************************
 menu_options = {
-    "ITL test": "ITL1",
-    "agw1g": "agw1g",
-    "agw1w": "agw1w",
-    "agw2g": "agw2g",
-    "agw2w": "agw2w",
-    "agw3g": "agw3g",
-    "agw3w": "agw3w",
-    "agw4g": "agw4g",
-    "agw4w": "agw4w",
-    "agw5g": "agw5g",
-    "agw5w": "agw5w",
-    "agw6g": "agw6g",
-    "agw6w": "agw6w",
-    "agw7g": "agw7g",
-    "agw7w": "agw7w",
-    "agw8g": "agw8g",
-    "agw8w": "agw8w",
+    "agw1g": "1g",
+    "agw1w": "1w",
+    "agw2g": "2g",
+    "agw2w": "2w",
+    "agw3g": "3g",
+    "agw3w": "3w",
+    "agw4g": "4g",
+    "agw4w": "4w",
+    "agw5g": "5g",
+    "agw5w": "5w",
+    "agw6g": "6g",
+    "agw6w": "6w",
+    "agw7g": "7g",
+    "agw7w": "7w",
+    "agw8g": "8g",
+    "agw8w": "8w",
 }
 if option == "menu":
     option = azcam.utils.show_menu(menu_options)
@@ -85,6 +83,9 @@ azcam.log(f"Configuring for {option}")
 # ****************************************************************
 config_info = {}
 cfile = os.path.join(azcam.db.systemfolder, f"lbtguiders_configuration_{azcam.db.hostname}.txt")
+if not os.path.exists(cfile):
+    cfile = os.path.join(azcam.db.systemfolder, f"lbtguiders_configuration.txt")
+
 with open(cfile) as f:
     azcam.log(f"Reading configuration file {cfile}")
 
@@ -131,16 +132,6 @@ if 0:
             "csport": 2445,
             "startupflag": 2,
         },
-        "ITL": {
-            "name": "ITL",
-            "azhost": "lesser",
-            "contype": "arc",
-            "dsp": "agw1g/tim3.lod",
-            "cmdserverport": 2402,
-            "cshost": "mainenance",
-            "csport": 2405,
-            "startupflag": 2,
-        },
     }
 
 # ****************************************************************
@@ -159,15 +150,6 @@ dsp = config_info[option]["dsp"]
 template = os.path.join(azcam.db.datafolder, "templates", "fits_template_lbtguiders.txt")
 parfile = os.path.join(azcam.db.datafolder, "parameters", "parameters_server_lbtguiders.ini")
 azcam.db.servermode = option
-
-# ****************************************************************
-# server
-# ****************************************************************
-if standaloneserver == azcam.db.hostname:
-    azcam.log("Running on standalone server")
-    startupserver = 1
-else:
-    startupserver = 0
 
 # ****************************************************************
 # controller
