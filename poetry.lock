@@ -60,12 +60,11 @@ test = ["astroid (<=2.5.3)", "pytest"]
 
 [[package]]
 name = "azcam"
-version = "22.2.5"
+version = "22.3"
 description = "Acquisition and analysis package for scientific imaging"
 category = "main"
 optional = false
-python-versions = "^3.9"
-develop = false
+python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 astropy = "*"
@@ -73,58 +72,37 @@ loguru = "*"
 matplotlib = "*"
 numpy = "*"
 
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam.git"
-reference = "HEAD"
-resolved_reference = "1d281b2eb9935288aba33dccfdb857c0dcf837d3"
-
 [[package]]
 name = "azcam-arc"
-version = "22.2"
+version = "22.3"
 description = "Azcam extension for Astronomical Research Cameras (ARC) gen1, gen2, and gen3 controllers"
 category = "main"
 optional = false
-python-versions = "^3.9"
-develop = false
+python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 azcam = "*"
 
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam-arc.git"
-reference = "HEAD"
-resolved_reference = "aaaec29be0669b4bace97c5bbe11c8becd163f0f"
-
 [[package]]
 name = "azcam-ds9"
-version = "22.2"
+version = "22.3"
 description = "Azcam extension for SAO's ds9 image display"
 category = "main"
 optional = false
-python-versions = "^3.9"
-develop = false
+python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 astropy = "*"
 azcam = "*"
 numpy = "*"
 
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam-ds9.git"
-reference = "HEAD"
-resolved_reference = "073315f33ab503475a08e8f690a721cfd66bfc40"
-
 [[package]]
 name = "azcam-fastapi"
-version = "22.2"
+version = "22.3"
 description = "Azcam-fastapi is an azcam extension which implements a fastapi-based webserver"
 category = "main"
 optional = false
-python-versions = "^3.9,<3.11"
-develop = false
+python-versions = ">=3.9,<3.11"
 
 [package.dependencies]
 azcam = "*"
@@ -132,56 +110,35 @@ fastapi = "*"
 jinja2 = "*"
 uvicorn = "*"
 
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam-fastapi.git"
-reference = "HEAD"
-resolved_reference = "fb5b0292d9f1ec1af3dc6199594fd83898a349e3"
-
 [[package]]
 name = "azcam-imageserver"
-version = "22.2"
+version = "22.3"
 description = "Azcam extension to suuport a remote image server"
 category = "main"
 optional = false
-python-versions = "^3.9"
-develop = false
+python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 azcam = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam-imageserver.git"
-reference = "HEAD"
-resolved_reference = "665fc4638cc72878a311892deacb5b6f93314efe"
 
 [[package]]
 name = "azcam-mag"
-version = "22.2"
+version = "22.3"
 description = "Azcam extension for OCIW Magellan ITL camera controllers"
 category = "main"
 optional = false
-python-versions = "^3.9"
-develop = false
+python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 azcam = "*"
 
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam-mag.git"
-reference = "HEAD"
-resolved_reference = "d80e8032afce0015603e81d942722a3dcc3a9a38"
-
 [[package]]
 name = "azcam-monitor"
-version = "22.2"
+version = "22.3"
 description = "Azcam monitoring application"
 category = "main"
 optional = false
-python-versions = "^3.9"
-develop = false
+python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 azcam = "*"
@@ -189,31 +146,18 @@ fastapi = "*"
 psutil = "*"
 uvicorn = "*"
 
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam-monitor.git"
-reference = "HEAD"
-resolved_reference = "5ad698ba954966d444cdcb555a910b128c7f4a5c"
-
 [[package]]
 name = "azcam-webtools"
-version = "22.2"
+version = "22.3"
 description = "Azcam extension which implements various browser-based tools"
 category = "main"
 optional = false
-python-versions = "^3.9,<3.11"
-develop = false
+python-versions = ">=3.9,<3.11"
 
 [package.dependencies]
 azcam = "*"
 fastapi = "*"
 jinja2 = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/mplesser/azcam-webtools.git"
-reference = "HEAD"
-resolved_reference = "ea1d579fc64cf39dde6a274bcbdeef62a283e19c"
 
 [[package]]
 name = "backcall"
@@ -807,7 +751,7 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9,<3.11"
-content-hash = "3b82e909a8c24c56fde6529470c9677cd5d2d1a0137876bac71a8d28bbf75f6d"
+content-hash = "e4ed8759a0b5636368de9204986273bf30b76071c9c5a65b16c6dfde6c6d551d"
 
 [metadata.files]
 anyio = [
@@ -842,14 +786,38 @@ asttokens = [
     {file = "asttokens-2.0.8-py2.py3-none-any.whl", hash = "sha256:e3305297c744ae53ffa032c45dc347286165e4ffce6875dc662b205db0623d86"},
     {file = "asttokens-2.0.8.tar.gz", hash = "sha256:c61e16246ecfb2cde2958406b4c8ebc043c9e6d73aaa83c941673b35e5d3a76b"},
 ]
-azcam = []
-azcam-arc = []
-azcam-ds9 = []
-azcam-fastapi = []
-azcam-imageserver = []
-azcam-mag = []
-azcam-monitor = []
-azcam-webtools = []
+azcam = [
+    {file = "azcam-22.3-py3-none-any.whl", hash = "sha256:e9301fd1dede0f2d08e7e027d805551cef489e88e6313213317283b5345c78f1"},
+    {file = "azcam-22.3.tar.gz", hash = "sha256:20360735622784ba587a4f064fa605c7c760f69c729aae838fbddaadb2baeeb9"},
+]
+azcam-arc = [
+    {file = "azcam-arc-22.3.tar.gz", hash = "sha256:37765c6d413b81821c56f29e0dccac13edbb81d18ea0cfd0b7d17ec490ee4eab"},
+    {file = "azcam_arc-22.3-py3-none-any.whl", hash = "sha256:d49ebd3bf8482b44ad70e00ddad79b27fdac31490b1106b09bf1020d27d4a5c3"},
+]
+azcam-ds9 = [
+    {file = "azcam-ds9-22.3.tar.gz", hash = "sha256:33ecdadc556f89b84381aefe7e9699a1289f92f6c7595090579a08af6a2f7912"},
+    {file = "azcam_ds9-22.3-py3-none-any.whl", hash = "sha256:3b01ea695a91d75c0fc828b11d9d2fe1438aedcbcf328c876f91e09b9e67abf1"},
+]
+azcam-fastapi = [
+    {file = "azcam-fastapi-22.3.tar.gz", hash = "sha256:e7866aaaa0ba4a744a4a1af50a875ac827a7c6f42368f5f3d9d773634b232d86"},
+    {file = "azcam_fastapi-22.3-py3-none-any.whl", hash = "sha256:01c2f38691f12ed66f2c91e526c852b072cc73ef9d025d11c04230d5b803a020"},
+]
+azcam-imageserver = [
+    {file = "azcam-imageserver-22.3.tar.gz", hash = "sha256:0a50529ffc6a5454274ed909a94df9f2767f07e2184ecdccbac5f7fa9f6cff2a"},
+    {file = "azcam_imageserver-22.3-py3-none-any.whl", hash = "sha256:99953e63601158f8f82b89e799b934f66e44269b96231b8554401f45a17faf04"},
+]
+azcam-mag = [
+    {file = "azcam-mag-22.3.tar.gz", hash = "sha256:abe6765522bb25829436969c230841da656adc7211b43972206ee56aa708fc3f"},
+    {file = "azcam_mag-22.3-py3-none-any.whl", hash = "sha256:9045b1d2c71a58494a290ba6b765d8bad3074230624c2141d8226b60e5e1adaa"},
+]
+azcam-monitor = [
+    {file = "azcam-monitor-22.3.tar.gz", hash = "sha256:2176a4e345a182ed9fd26e187a09da238e47c0f0139b4f8449e6569b194714f6"},
+    {file = "azcam_monitor-22.3-py3-none-any.whl", hash = "sha256:021ec0d62a8b4aa08ebb672c483d7725cb37059afd7e439641784a7080e53aa6"},
+]
+azcam-webtools = [
+    {file = "azcam-webtools-22.3.tar.gz", hash = "sha256:973b2329b372731dfc70d4c5e3d58840603aab03580d479ece5e76548fa16203"},
+    {file = "azcam_webtools-22.3-py3-none-any.whl", hash = "sha256:13cfb22e9450229ec10738f20da242c4c876239f32d69071c3ae1b0d771a47e6"},
+]
 backcall = [
     {file = "backcall-0.2.0-py2.py3-none-any.whl", hash = "sha256:fbbce6a29f263178a1f7915c1940bde0ec2b2a967566fe1c65c1dfb7422bd255"},
     {file = "backcall-0.2.0.tar.gz", hash = "sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e"},
@@ -1120,8 +1088,8 @@ Pillow = [
     {file = "Pillow-9.2.0-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:37ff6b522a26d0538b753f0b4e8e164fdada12db6c6f00f62145d732d8a3152e"},
     {file = "Pillow-9.2.0-cp310-cp310-win32.whl", hash = "sha256:c79698d4cd9318d9481d89a77e2d3fcaeff5486be641e60a4b49f3d2ecca4e28"},
     {file = "Pillow-9.2.0-cp310-cp310-win_amd64.whl", hash = "sha256:254164c57bab4b459f14c64e93df11eff5ded575192c294a0c49270f22c5d93d"},
-    {file = "Pillow-9.2.0-cp311-cp311-macosx_10_10_universal2.whl", hash = "sha256:408673ed75594933714482501fe97e055a42996087eeca7e5d06e33218d05aa8"},
-    {file = "Pillow-9.2.0-cp311-cp311-macosx_11_0_universal2.whl", hash = "sha256:727dd1389bc5cb9827cbd1f9d40d2c2a1a0c9b32dd2261db522d22a604a6eec9"},
+    {file = "Pillow-9.2.0-cp311-cp311-macosx_10_10_x86_64.whl", hash = "sha256:adabc0bce035467fb537ef3e5e74f2847c8af217ee0be0455d4fec8adc0462fc"},
+    {file = "Pillow-9.2.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:336b9036127eab855beec9662ac3ea13a4544a523ae273cbf108b228ecac8437"},
     {file = "Pillow-9.2.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:50dff9cc21826d2977ef2d2a205504034e3a4563ca6f5db739b0d1026658e004"},
     {file = "Pillow-9.2.0-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:cb6259196a589123d755380b65127ddc60f4c64b21fc3bb46ce3a6ea663659b0"},
     {file = "Pillow-9.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7b0554af24df2bf96618dac71ddada02420f946be943b181108cac55a7a2dcd4"},

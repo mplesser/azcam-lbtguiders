@@ -15,14 +15,14 @@ ipython = "*"
 PySide2 = "*"
 rich = "*"
 
-azcam = { git = "https://github.com/mplesser/azcam.git"}
-azcam-monitor = { git = "https://github.com/mplesser/azcam-monitor.git"}
-azcam-fastapi = { git = "https://github.com/mplesser/azcam-fastapi.git"}
-azcam-arc = { git = "https://github.com/mplesser/azcam-arc.git"}
-azcam-ds9 = { git = "https://github.com/mplesser/azcam-ds9.git"}
-azcam-imageserver = { git = "https://github.com/mplesser/azcam-imageserver.git"}
-azcam-mag = { git = "https://github.com/mplesser/azcam-mag.git"}
-azcam-webtools = { git = "https://github.com/mplesser/azcam-webtools.git"}
+azcam = "*"
+azcam-monitor = "*"
+azcam-fastapi = "*"
+azcam-arc = "*"
+azcam-ds9 = "*"
+azcam-imageserver = "*"
+azcam-mag = "*"
+azcam-webtools = "*"
 
 [tool.poetry.dev-dependencies]
 
