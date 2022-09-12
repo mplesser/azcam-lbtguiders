@@ -1,5 +1,5 @@
 """
-Start all azcamserver in Windows Terminal using  poetry.
+Start all azcamserver in Windows Terminal using a virtual environoment.
 """
 
 import os
