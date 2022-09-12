@@ -20,8 +20,8 @@
 6g ARC agw6g 2502 192.168.2.36 2405 2 mods2-cam # 192.168.2.36
 6w ARC agw6w 2512 192.168.2.36 2415 2 mods2-cam # 192.168.2.36
 
-7g MAG agw7g 2522 agw7-cam 2425 1 agw7-cam # 192.168.2.37
-7w MAG agw7w 2532 agw7-cam 2435 1 agw7-cam # 192.168.2.37
+7g MAG agw7g 2522 agw7-cam 2405 1 agw7-cam # 192.168.2.37
+7w MAG agw7w 2532 agw7-cam 2415 1 agw7-cam # 192.168.2.37
 
-8g MAG agw8g 2542 agw8-cam 2425 1 agw8-cam # 192.168.2.38
-8w MAG agw8w 2552 agw8-cam 2435 1 agw8-cam # 192.168.2.38
+8g MAG agw8g 2542 agw8-cam 2405 1 agw8-cam # 192.168.2.38
+8w MAG agw8w 2552 agw8-cam 2415 1 agw8-cam # 192.168.2.38
