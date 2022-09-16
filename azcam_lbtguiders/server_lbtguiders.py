@@ -120,20 +120,6 @@ with open(cfile) as f:
             "azhost": tokens[7],
         }
 
-if 0:
-    config_info = {
-        "agw1g": {
-            "name": "1g",
-            "azhost": "agw1-cam",
-            "contype": "arc",
-            "dsp": "agw1g/tim3.lod",
-            "cmdserverport": 2442,
-            "cshost": "192.168.2.31",
-            "csport": 2445,
-            "startupflag": 2,
-        },
-    }
-
 # ****************************************************************
 # configure system options
 # ****************************************************************
@@ -170,10 +156,10 @@ if contype == "ARC":
     controller.video_speed = 1
 
     tempcon = TempConArc()
-    tempcon.set_calibrations([0, 0, 3])
+    tempcon.set_calibrations([0, 0])
 
-    tempcon.temperature_offsets = 4 * [-76.0]  # from agw2
-    tempcon.temperature_scales = 4 * [1.0]
+    tempcon.temperature_offsets = 2 * [-76.0]  # from agw2
+    tempcon.temperature_scales = 2 * [1.0]
     tempcon.temperature_correction = 1
 
 elif contype == "MAG":
@@ -183,7 +169,9 @@ elif contype == "MAG":
     controller.use_read_lock = 1
 
     tempcon = TempConMag()
-    tempcon.set_calibrations([0, 0, 3])
+    tempcon.temperature_offsets = 2 * [-170.0]  # from old note
+    tempcon.temperature_scales = 2 * [1.0]
+    tempcon.temperature_correction = 1
 
 else:
     raise azcam.AzcamError("invalid controller type")
@@ -223,6 +211,7 @@ detector_ccd57 = {
     "description": "e2v CCD57",
     "ref_pixel": [256, 256],
     "format": [560, 24, 0, 0, 528, 14, 0, 0, 528],
+    #"format": [536, 15, 0, 0, 528, 16, 0, 0, 528],
     "focalplane": [1, 1, 1, 1, "0"],
     "roi": [1, 512, 1, 512, 1, 1],
     "ext_position": [[1, 1]],
@@ -260,11 +249,6 @@ gcs = GCS()
 azcam.db.tools["gcs"] = gcs
 
 # ****************************************************************
-# azcammonitor
-# ****************************************************************
-process_path = "c:/azcam/azcam-lbtguiders/bin/start_servers.bat"
-
-# ****************************************************************
 # parameter file
 # ****************************************************************
 azcam.db.tools["parameters"].read_parfile(parfile)
@@ -284,12 +268,13 @@ azcam.db.default_tool = "gcs"
 # ****************************************************************
 # web server
 # ****************************************************************
-webserver = WebServer()
-webserver.port = 2403  # common port for all configurations
-webserver.index = os.path.join(azcam.db.systemfolder, "index_lbtguiders.html")
-webserver.start()
-webstatus = Status()
-webstatus.initialize()
+if 0:
+    webserver = WebServer()
+    webserver.port = 2403  # common port for all configurations
+    webserver.index = os.path.join(azcam.db.systemfolder, "index_lbtguiders.html")
+    webserver.start()
+    webstatus = Status()
+    webstatus.initialize()
 
 # ****************************************************************
 # GUIs
