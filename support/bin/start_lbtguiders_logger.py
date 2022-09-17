@@ -3,8 +3,8 @@ azcam_lbtguiders logger
 """
 
 
-import os
 import socketserver
+
 from azcam.logging_server_tcp import LoggingStreamHandler
 
 port = 2404
