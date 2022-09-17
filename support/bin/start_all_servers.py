@@ -11,5 +11,5 @@ shell = f"ipython --profile azcamserver -i -m azcam_lbtguiders.server"
 
 for name in systems:
     wt = f"wt -w azcam --title {name}"
-    cl = f"poetry run {wt} {shell} -- -- -system {name}"
+    cl = f"{wt} {shell} -- -system {name}"
     os.system(cl)

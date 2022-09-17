@@ -9,10 +9,8 @@ keywords=["ccd", "imaging", "astronomy", "sensors"]
 authors = [{name="Michael Lesser"},{email = "mlesser@arizona.edu"}]
 dependencies = [
     "ipython",
-    "pyside2",
     "rich",
     "azcam",
-    "azcam-monitor",
     "azcam-fastapi",
     "azcam-arc",
     "azcam-ds9",

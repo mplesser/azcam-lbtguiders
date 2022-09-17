@@ -11,7 +11,6 @@ from azcam.tools.system import System
 from azcam.tools.instrument import Instrument
 from azcam.tools.telescope import Telescope
 
-from azcam_monitor.monitorinterface import AzCamMonitorInterface
 from azcam_arc.controller_arc import ControllerArc
 from azcam_arc.exposure_arc import ExposureArc
 from azcam_arc.tempcon_arc import TempConArc
