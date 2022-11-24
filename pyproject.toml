@@ -1,22 +1,16 @@
 [project]
 name = "azcam-lbtguiders"
-version = "22.3.1"
+version = "22.4.0"
 description = "Azcam extension for LBTO lbtguiders cameras"
 license = {file ="LICENSE"}
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 keywords=["ccd", "imaging", "astronomy", "sensors"]
 authors = [{name="Michael Lesser"},{email = "mlesser@arizona.edu"}]
 dependencies = [
     "ipython",
     "rich",
     "azcam",
-    "azcam-fastapi",
-    "azcam-arc",
-    "azcam-ds9",
-    "azcam-imageserver",
-    "azcam-mag",
-    "azcam-webtools",
 ]
 
 [project.urls]
