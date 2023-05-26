@@ -4,22 +4,22 @@ import os
 import sys
 
 import azcam
-import azcam.server
-import azcam.shortcuts
-from azcam.cmdserver import CommandServer
-from azcam.system import System
+import azcam_server.server
+import azcam_server.shortcuts
+from azcam_server.cmdserver import CommandServer
+from azcam.header import System
 from azcam.tools.instrument import Instrument
 from azcam.tools.telescope import Telescope
-from azcam.tools.arc.controller_arc import ControllerArc
-from azcam.tools.arc.exposure_arc import ExposureArc
-from azcam.tools.arc.tempcon_arc import TempConArc
-from azcam.tools.mag.controller_mag import ControllerMag
-from azcam.tools.mag.exposure_mag import ExposureMag
-from azcam.tools.mag.tempcon_mag import TempConMag
+from azcam_server.tools.arc.controller_arc import ControllerArc
+from azcam_server.tools.arc.exposure_arc import ExposureArc
+from azcam_server.tools.arc.tempcon_arc import TempConArc
+from azcam_server.tools.mag.controller_mag import ControllerMag
+from azcam_server.tools.mag.exposure_mag import ExposureMag
+from azcam_server.tools.mag.tempcon_mag import TempConMag
 from azcam.tools.ds9display import Ds9Display
 from azcam.tools.sendimage import SendImage
-from azcam.tools.webserver.fastapi_server import WebServer
-from azcam.tools.webtools.status.status import Status
+from azcam_server.tools.webserver.fastapi_server import WebServer
+from azcam_server.tools.webtools.status.status import Status
 
 from azcam_lbtguiders.gcs import GCS
 
@@ -209,7 +209,7 @@ detector_ccd57 = {
     "description": "e2v CCD57",
     "ref_pixel": [256, 256],
     "format": [560, 24, 0, 0, 528, 14, 0, 0, 528],
-    #"format": [536, 15, 0, 0, 528, 16, 0, 0, 528],
+    # "format": [536, 15, 0, 0, 528, 16, 0, 0, 528],
     "focalplane": [1, 1, 1, 1, "0"],
     "roi": [1, 512, 1, 512, 1, 1],
     "ext_position": [[1, 1]],
