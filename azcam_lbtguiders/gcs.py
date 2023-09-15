@@ -119,7 +119,7 @@ class GCS(object):
         return self.status
 
     def resetcontroller(self):
-        azcam.db.tools["controller"].reset()
+        azcam.db.tools["exposure"].reset()
         return self.status
 
     def abort(self):
@@ -140,7 +140,6 @@ class GCS(object):
         return nc, nr
 
     def get(self, attribute):
-
         if attribute == "version":
             reply = azcam.__version__
         elif attribute == "cameratype":
@@ -195,7 +194,6 @@ class GCS(object):
         np_overscan: int,
         np_frametransfer: int,
     ) -> None:
-
         azcam.db.tools["exposure"].set_format(
             ns_total,
             ns_predark,
@@ -219,7 +217,7 @@ class GCS(object):
 
     def readtemperature(self, flag=0):
         temps = azcam.db.tools["tempcon"].get_temperatures()
-        if len(temps)>1:
+        if len(temps) > 1:
             return temps[0], temps[1]
         else:
             return temps[0], temps[0]
@@ -228,13 +226,13 @@ class GCS(object):
         if flag == -1:
             azcam.db.tools["sendimage"].set_remote_imageserver()
         else:
-            azcam.db.tools["sendimage"].set_remote_imageserver(host, port, "lbtguider")
+            azcam.db.tools["sendimage"].set_remote_imageserver(host, int(port), "lbtguider")
         return self.status
 
     def setparameter(self, keyword, value, comment=""):
         if keyword == "CLEARALL":
             azcam.db.tools["exposure"].header.delete_all_keywords()
-        else:   
+        else:
             azcam.db.tools["exposure"].set_keyword(keyword, value, comment)
         return self.status
 
@@ -250,7 +248,7 @@ class GCS(object):
         """not used"""
         return self.status
 
-    def setsyntheticimage(self,flag=0):
+    def setsyntheticimage(self, flag=0):
         """not used"""
         return self.status
 
