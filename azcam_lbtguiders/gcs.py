@@ -137,7 +137,7 @@ class GCS(object):
     def getdetpars(self):
         nc = azcam.db.tools["exposure"].image.focalplane.numcols_image
         nr = azcam.db.tools["exposure"].image.focalplane.numrows_image
-        return nc, nr
+        return f"{nc} {nr}"
 
     def get(self, attribute):
         if attribute == "version":
