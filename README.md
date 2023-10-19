@@ -6,7 +6,7 @@ This repository contains the *azcam-lbtguiders* *azcam* environment.  It contain
 
 ## Installation
 
-Download the code (usually into the *azcam* root folder such as `c:\azcam`) and install.
+Download the code (usually into the *azcam* root folder such as `/azcam`) and install.
 
 ```shell
 cd /azcam

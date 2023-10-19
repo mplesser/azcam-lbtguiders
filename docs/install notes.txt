@@ -1,5 +1,5 @@
 # Update PC
-- install Windows 10 and do updates
+- install Windows and do updates
 
 # Install python
 - Download and install vscode with GIT (notpad as editor)
@@ -11,8 +11,6 @@
 - git clone https://github.com/mplesser/azcam-ds9-winsupport
 
 - git clone https://github.com/mplesser/motoroladsptools
-
-- run C:\azcam\azcam-lbtguiders\support\bin\install_azcam.bat
 
 - install SAO ds9
 - install xpans and nssm from azcam-ds9-winsupport

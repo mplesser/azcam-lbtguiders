@@ -1,6 +1,6 @@
 [project]
 name = "azcam-lbtguiders"
-version = "23.0"
+version = "23.1"
 description = "Azcam extension for LBTO lbtguiders cameras"
 license = { file = "LICENSE" }
 readme = "README.md"

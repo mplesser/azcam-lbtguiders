@@ -142,14 +142,14 @@ class GCS(object):
     def get(self, attribute):
         if attribute == "version":
             reply = azcam.__version__
-        elif attribute == "cameratype":
+        elif attribute == "CameraType":
             reply = azcam.db.tools["controller"].controller_type
         elif attribute == "servername":
             reply = azcam.db.hostname
         elif attribute == "vispixels":
             nc = azcam.db.tools["exposure"].image.focalplane.numcols_image
             nr = azcam.db.tools["exposure"].image.focalplane.numrows_image
-            reply = nc, nr
+            reply = f"{nc} {nr}"
         else:
             reply = self.status
 
@@ -218,9 +218,9 @@ class GCS(object):
     def readtemperature(self, flag=0):
         temps = azcam.db.tools["tempcon"].get_temperatures()
         if len(temps) > 1:
-            return temps[0], temps[1]
+            return f"{temps[0]} {temps[1]}"
         else:
-            return temps[0], temps[0]
+            return f"{temps[0]} {temps[0]}"
 
     def setsocket(self, flag, host, port=6543):
         if flag == -1:
