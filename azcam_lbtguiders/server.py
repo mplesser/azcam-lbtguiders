@@ -281,6 +281,12 @@ if 0:
     import azcam_lbtguiders.start_azcamtool
 
 # ****************************************************************
+# add legacy CLI commands
+# ****************************************************************
+import azcam_lbtguiders.cli_commands
+from azcam.cli import *
+
+# ****************************************************************
 # finish
 # ****************************************************************
 azcam.log("Configuration complete")
