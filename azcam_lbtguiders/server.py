@@ -18,8 +18,9 @@ from azcam_server.tools.mag.exposure_mag import ExposureMag
 from azcam_server.tools.mag.tempcon_mag import TempConMag
 from azcam_server.tools.ds9display import Ds9Display
 from azcam_server.tools.sendimage import SendImage
-from azcam_server.tools.webserver.fastapi_server import WebServer
-from azcam_server.tools.webtools.status.status import Status
+from azcam_server.webserver.fastapi_server import WebServer
+from azcam_webtools.status.status import Status
+from azcam_webtools.exptool.exptool import Exptool
 
 from azcam_lbtguiders.gcs import GCS
 
@@ -80,7 +81,9 @@ azcam.log(f"Configuring for {option}")
 # read configuration data from file
 # ****************************************************************
 config_info = {}
-cfile = os.path.join(azcam.db.systemfolder, f"lbtguiders_configuration_{azcam.db.hostname}.txt")
+cfile = os.path.join(
+    azcam.db.systemfolder, f"lbtguiders_configuration_{azcam.db.hostname}.txt"
+)
 if not os.path.exists(cfile):
     cfile = os.path.join(azcam.db.systemfolder, f"lbtguiders_configuration.txt")
 
@@ -131,8 +134,12 @@ cshost = config_info[option]["cshost"]
 csport = config_info[option]["csport"]
 dsp = config_info[option]["dsp"]
 
-template = os.path.join(azcam.db.datafolder, "templates", "fits_template_lbtguiders.txt")
-parfile = os.path.join(azcam.db.datafolder, "parameters", "parameters_server_lbtguiders.ini")
+template = os.path.join(
+    azcam.db.datafolder, "templates", "fits_template_lbtguiders.txt"
+)
+parfile = os.path.join(
+    azcam.db.datafolder, "parameters", "parameters_server_lbtguiders.ini"
+)
 azcam.db.servermode = option
 
 # ****************************************************************
@@ -198,7 +205,9 @@ else:
     exposure.send_image = 1
     remote_imageserver_host = "10.30.7.82"
     remote_imageserver_port = 6543
-    sendimage.set_remote_imageserver(remote_imageserver_host, remote_imageserver_port, "lbtguider")
+    sendimage.set_remote_imageserver(
+        remote_imageserver_host, remote_imageserver_port, "lbtguider"
+    )
 exposure.folder = imagefolder
 
 # ****************************************************************
