@@ -275,19 +275,27 @@ azcam.db.default_tool = "gcs"
 # ****************************************************************
 # web server
 # ****************************************************************
-if 0:
+if 1:
     webserver = WebServer()
     webserver.port = 2403  # common port for all configurations
     webserver.index = os.path.join(azcam.db.systemfolder, "index_lbtguiders.html")
     webserver.start()
     webstatus = Status()
     webstatus.initialize()
+    exptool = Exptool()
+    exptool.initialize()
 
 # ****************************************************************
 # GUIs
 # ****************************************************************
 if 0:
     import azcam_lbtguiders.start_azcamtool
+
+# ****************************************************************
+# add legacy CLI commands
+# ****************************************************************
+import azcam_lbtguiders.cli_commands
+from azcam.cli import *
 
 # ****************************************************************
 # finish
