@@ -1,4 +1,6 @@
-# azcamconsole config file for lbtguiders
+"""
+azcamconsole config for lbtguiders
+"""
 
 import os
 import sys
@@ -36,43 +38,57 @@ else:
     azcam.db.datafolder = datafolder
 azcam.db.datafolder = azcam.utils.fix_path(azcam.db.datafolder)
 
-parfile = os.path.join(
-    azcam.db.datafolder, "parameters", f"parameters_console_{azcam.db.systemname}.ini"
-)
 
-# ****************************************************************
-# start logging
-# ****************************************************************
-logfile = os.path.join(azcam.db.datafolder, "logs", "console.log")
-azcam.db.logger.start_logging(logfile=logfile)
-azcam.log(f"Configuring console for {azcam.db.systemname}")
+def setup():
+    parfile = os.path.join(
+        azcam.db.datafolder,
+        "parameters",
+        f"parameters_console_{azcam.db.systemname}.ini",
+    )
 
-# ****************************************************************
-# display
-# ****************************************************************
-display = Ds9Display()
-dthread = threading.Thread(target=display.initialize, args=[])
-dthread.start()  # thread just for speed
+    # ****************************************************************
+    # start logging
+    # ****************************************************************
+    logfile = os.path.join(azcam.db.datafolder, "logs", "console.log")
+    azcam.db.logger.start_logging(logfile=logfile)
+    azcam.log(f"Configuring console for {azcam.db.systemname}")
 
-# ****************************************************************
-# console tools
-# ****************************************************************
-from azcam_console.tools import create_console_tools
+    # ****************************************************************
+    # display
+    # ****************************************************************
+    display = Ds9Display()
+    dthread = threading.Thread(target=display.initialize, args=[])
+    dthread.start()  # thread just for speed
 
-create_console_tools()
+    # ****************************************************************
+    # console tools
+    # ****************************************************************
+    from azcam_console.tools import create_console_tools
 
-# ****************************************************************
-# try to connect to azcamserver
-# ****************************************************************
-server = azcam.db.tools["server"]
-connected = server.connect()
-if connected:
-    azcam.log("Connected to azcamserver")
-else:
-    azcam.log("Not connected to azcamserver")
+    create_console_tools()
 
-# ****************************************************************
-# read par file
-# ****************************************************************
-azcam.db.parameters.read_parfile(parfile)
-azcam.db.parameters.update_pars("azcamconsole")
+    # ****************************************************************
+    # try to connect to azcamserver
+    # ****************************************************************
+    server = azcam.db.tools["server"]
+    connected = server.connect()
+    if connected:
+        azcam.log("Connected to azcamserver")
+    else:
+        azcam.log("Not connected to azcamserver")
+
+    # ****************************************************************
+    # read par file
+    # ****************************************************************
+    azcam.db.parameters.read_parfile(parfile)
+    azcam.db.parameters.update_pars("azcamconsole")
+
+    # try to change window title
+    try:
+        ctypes.windll.kernel32.SetConsoleTitleW("azcamconsole")
+    except Exception:
+        pass
+
+
+setup()
+from azcam.cli import *
