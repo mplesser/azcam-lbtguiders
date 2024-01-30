@@ -1,7 +1,8 @@
 """
-azcamserver config for lbtguiders
+Setup method for lbtguiders azcamserver.
+Usage example:
+  python -i -m azcam_lbtguiders.server -- -system 1g
 """
-
 
 import os
 import sys
@@ -27,22 +28,16 @@ from azcam_webtools.exptool.exptool import Exptool
 
 from azcam_lbtguiders.gcs import GCS
 
-# ****************************************************************
-# parse command line arguments
-# ****************************************************************
-try:
-    i = sys.argv.index("-system")
-    option = sys.argv[i + 1]
-except ValueError:
-    option = "menu"
-
 
 def setup():
-    global option
+    # command line arguments
+    try:
+        i = sys.argv.index("-system")
+        option = sys.argv[i + 1]
+    except ValueError:
+        option = "menu"
 
-    # ****************************************************************
     # configuration menu
-    # ****************************************************************
     menu_options = {
         "agw1g": "1g",
         "agw1w": "1w",
@@ -64,9 +59,7 @@ def setup():
     if option == "menu":
         option = azcam.utils.show_menu(menu_options)
 
-    # ****************************************************************
     # define folders for system
-    # ****************************************************************
     azcam.db.systemname = "lbtguiders"
     azcam.db.systemfolder = os.path.dirname(__file__)
     azcam.db.systemfolder = azcam.utils.fix_path(azcam.db.systemfolder)
@@ -77,16 +70,12 @@ def setup():
     azcam.db.datafolder = os.path.join(droot, azcam.db.systemname)
     azcam.db.datafolder = azcam.utils.fix_path(azcam.db.datafolder)
 
-    # ****************************************************************
     # enable logging
-    # ****************************************************************
     logfile = os.path.join(azcam.db.datafolder, "logs", "server.log")
     azcam.db.logger.start_logging(logfile=logfile)
     azcam.log(f"Configuring for {option}")
 
-    # ****************************************************************
     # read configuration data from file
-    # ****************************************************************
     config_info = {}
     cfile = os.path.join(
         azcam.db.systemfolder, f"lbtguiders_configuration_{azcam.db.hostname}.txt"
@@ -128,9 +117,7 @@ def setup():
                 "azhost": tokens[7],
             }
 
-    # ****************************************************************
     # configure system options
-    # ****************************************************************
     azcam.db.config_info = config_info
     cmdserverport = config_info[option]["cmdserverport"]
     azhost = config_info[option]["azhost"]
@@ -149,9 +136,7 @@ def setup():
     )
     azcam.db.servermode = option
 
-    # ****************************************************************
     # controller
-    # ****************************************************************
     dspfolder = azcam.db.systemfolder  # systemfolder or datafolder
     if contype == "ARC":
         controller = ControllerArc()
@@ -196,9 +181,7 @@ def setup():
 
     controller.camserver.set_server(cshost, csport)
 
-    # ****************************************************************
     # exposure
-    # ****************************************************************
     if contype == "ARC":
         exposure = ExposureArc()
     elif contype == "MAG":
@@ -223,9 +206,7 @@ def setup():
         )
     exposure.folder = imagefolder
 
-    # ****************************************************************
     # detector
-    # ****************************************************************
     detector_ccd57 = {
         "name": "CCD57",
         "description": "e2v CCD57",
@@ -239,44 +220,30 @@ def setup():
     }
     exposure.set_detpars(detector_ccd57)
 
-    # ****************************************************************
     # instrument
-    # ****************************************************************
     instrument = Instrument()
     instrument.enabled = 0
 
-    # ****************************************************************
     # telescope
-    # ****************************************************************
     telescope = Telescope()
     telescope.enabled = 0
 
-    # ****************************************************************
     # system header template
-    # ****************************************************************
     system = System("lbtguiders", template)
     system.set_keyword("DEWAR", "lbtguider", "Dewar name")
 
-    # ****************************************************************
     # display
-    # ****************************************************************
     display = Ds9Display()
 
-    # ****************************************************************
     # GCS commands
-    # ****************************************************************
     gcs = GCS()
     azcam.db.tools["gcs"] = gcs
 
-    # ****************************************************************
     # parameter file
-    # ****************************************************************
     azcam.db.parameters.read_parfile(parfile)
     azcam.db.parameters.update_pars("azcamserver")
 
-    # ****************************************************************
     # define and start command server
-    # ****************************************************************
     cmdserver = CommandServer()
     cmdserver.port = cmdserverport
     cmdserver.case_insensitive = 1
@@ -285,9 +252,7 @@ def setup():
     cmdserver.start()
     azcam.db.default_tool = "gcs"
 
-    # ****************************************************************
     # web server
-    # ****************************************************************
     if 1:
         webserver = WebServer()
         webserver.port = 2403  # common port for all configurations
@@ -298,21 +263,17 @@ def setup():
         exptool = Exptool()
         exptool.initialize()
 
-    # ****************************************************************
     # GUIs
-    # ****************************************************************
     if 0:
         import azcam_lbtguiders.start_azcamtool
 
-    # ****************************************************************
     # add legacy CLI commands
-    # ****************************************************************
     import azcam_lbtguiders.cli_commands
 
-    # ****************************************************************
     # finish
-    # ****************************************************************
     azcam.log("Configuration complete")
+
+    # start
 
 
 setup()
