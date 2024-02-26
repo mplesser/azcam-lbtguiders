@@ -8,6 +8,7 @@ import os
 import sys
 
 import azcam
+from azcam import exceptions
 import azcam_server.server
 import azcam_server.shortcuts
 from azcam_server.cmdserver import CommandServer
@@ -177,7 +178,7 @@ def setup():
         tempcon.temperature_correction = 1
 
     else:
-        raise azcam.AzcamError("invalid controller type")
+        raise exceptions.AzcamError("invalid controller type")
 
     controller.camserver.set_server(cshost, csport)
 
@@ -187,7 +188,7 @@ def setup():
     elif contype == "MAG":
         exposure = ExposureMag()
     else:
-        raise azcam.AzcamError("invalid controller type")
+        raise exceptions.AzcamError("invalid controller type")
     sendimage = SendImage()
     exposure.filetype = exposure.filetypes["FITS"]
     exposure.image.filetype = exposure.filetypes["FITS"]
@@ -258,9 +259,9 @@ def setup():
         webserver.port = 2403  # common port for all configurations
         webserver.index = os.path.join(azcam.db.systemfolder, "index_lbtguiders.html")
         webserver.start()
-        webstatus = Status()
+        webstatus = Status(webserver)
         webstatus.initialize()
-        exptool = Exptool()
+        exptool = Exptool(webserver)
         exptool.initialize()
 
     # GUIs
