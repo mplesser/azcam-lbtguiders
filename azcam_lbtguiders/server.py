@@ -23,9 +23,9 @@ from azcam_server.tools.mag.exposure_mag import ExposureMag
 from azcam_server.tools.mag.tempcon_mag import TempConMag
 from azcam_server.tools.ds9display import Ds9Display
 from azcam_server.tools.sendimage import SendImage
-from azcam_webtools.webserver.fastapi_server import WebServer
-from azcam_webtools.status.status import Status
-from azcam_webtools.exptool.exptool import Exptool
+from azcam_server.webtools.webserver.fastapi_server import WebServer
+from azcam_server.webtools.status.status import Status
+from azcam_server.webtools.exptool.exptool import Exptool
 
 from azcam_lbtguiders.gcs import GCS
 
