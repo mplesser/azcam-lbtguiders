@@ -11,7 +11,8 @@ import os
 import sys
 
 wt = "wt -w azcam --title azcamserver --tabColor #990000"
-shell = f"ipython --profile azcamserver -i -m azcam_lbtguiders.server"
+shell = f"python -i -m azcam_lbtguiders.server"
+# shell = f"ipython --profile azcamserver -i -m azcam_lbtguiders.server"
 
 if len(sys.argv) > 1:
     args = " -- " + " ".join(sys.argv[1:])
@@ -20,4 +21,3 @@ else:
 
 cl = f"{wt} {shell} {args}"
 os.system(cl)
-

@@ -3,17 +3,16 @@
 
 # Install python
 - Download and install vscode with GIT (notpad as editor)
-- install python to c:\python3x (e.g. c:\python39)
+- install python to c:\python3x (e.g. c:\python311)
 
 # Install azcam
 - create and cd to c:\azcam
 - git clone https://github.com/mplesser/azcam-lbtguiders
-- git clone https://github.com/mplesser/azcam-ds9-winsupport
-
+- git clone https://github.com/mplesser/azcam-support
 - git clone https://github.com/mplesser/motoroladsptools
 
 - install SAO ds9
-- install xpans and nssm from azcam-ds9-winsupport
+- install xpans and nssm from azcam-support
 
 # If PC is a controller server
 - install ARC or Mag PCI drivers

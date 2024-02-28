@@ -11,7 +11,9 @@ import os
 import sys
 
 wt = "wt -w azcam --title AzCamConsole --tabColor #000099"
-shell = f"ipython --profile azcamconsole -i -m azcam_lbtguiders.console"
+shell = f"python -i -m azcam_lbtguiders.console"
+
+# shell = f"ipython --profile azcamconsole -i -m azcam_lbtguiders.console"
 
 if len(sys.argv) > 1:
     args = " -- " + " ".join(sys.argv[1:])
@@ -20,4 +22,3 @@ else:
 
 cl = f"{wt} {shell} {args}"
 os.system(cl)
-

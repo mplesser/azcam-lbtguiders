@@ -67,7 +67,10 @@ def setup():
 
     droot = os.environ.get("AZCAM_DATAROOT")
     if droot is None:
-        droot = "/data"
+        if os.name == "nt":
+            droot = "~/data"
+        else:
+            droot = "/data"
     azcam.db.datafolder = os.path.join(droot, azcam.db.systemname)
     azcam.db.datafolder = azcam.utils.fix_path(azcam.db.datafolder)
 
