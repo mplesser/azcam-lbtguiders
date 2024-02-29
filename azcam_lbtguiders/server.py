@@ -64,15 +64,7 @@ def setup():
     azcam.db.systemname = "lbtguiders"
     azcam.db.systemfolder = os.path.dirname(__file__)
     azcam.db.systemfolder = azcam.utils.fix_path(azcam.db.systemfolder)
-
-    droot = os.environ.get("AZCAM_DATAROOT")
-    if droot is None:
-        if os.name == "nt":
-            droot = "~/data"
-        else:
-            droot = "/data"
-    azcam.db.datafolder = os.path.join(droot, azcam.db.systemname)
-    azcam.db.datafolder = azcam.utils.fix_path(azcam.db.datafolder)
+    azcam.db.datafolder = azcam.utils.get_datafolder(datafolder)
 
     # enable logging
     logfile = os.path.join(azcam.db.datafolder, "logs", "server.log")

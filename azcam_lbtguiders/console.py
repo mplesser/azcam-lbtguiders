@@ -31,15 +31,7 @@ def setup():
     azcam.db.systemname = "lbtguiders"
 
     azcam.db.systemfolder = f"{os.path.dirname(__file__)}"
-
-    if datafolder is None:
-        droot = os.environ.get("AZCAM_DATAROOT")
-        if droot is None:
-            droot = "/data/lbtguiders"
-        azcam.db.datafolder = droot
-    else:
-        azcam.db.datafolder = datafolder
-    azcam.db.datafolder = azcam.utils.fix_path(azcam.db.datafolder)
+    azcam.db.datafolder = azcam.utils.get_datafolder(datafolder)
 
     parfile = os.path.join(
         azcam.db.datafolder,
