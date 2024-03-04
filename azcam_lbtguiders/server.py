@@ -8,24 +8,25 @@ import os
 import sys
 
 import azcam
+import azcam.utils
 from azcam import exceptions
-import azcam_server.server
-import azcam_server.shortcuts
-from azcam_server.cmdserver import CommandServer
+import azcam.server.server
+import azcam.server.shortcuts
+from azcam.server.cmdserver import CommandServer
 from azcam.header import System
-from azcam_server.tools.instrument import Instrument
-from azcam_server.tools.telescope import Telescope
-from azcam_server.tools.arc.controller_arc import ControllerArc
-from azcam_server.tools.arc.exposure_arc import ExposureArc
-from azcam_server.tools.arc.tempcon_arc import TempConArc
-from azcam_server.tools.mag.controller_mag import ControllerMag
-from azcam_server.tools.mag.exposure_mag import ExposureMag
-from azcam_server.tools.mag.tempcon_mag import TempConMag
-from azcam_server.tools.ds9display import Ds9Display
-from azcam_server.tools.sendimage import SendImage
-from azcam_server.webtools.webserver.fastapi_server import WebServer
-from azcam_server.webtools.status.status import Status
-from azcam_server.webtools.exptool.exptool import Exptool
+from azcam.server.tools.instrument import Instrument
+from azcam.server.tools.telescope import Telescope
+from azcam.server.tools.arc.controller_arc import ControllerArc
+from azcam.server.tools.arc.exposure_arc import ExposureArc
+from azcam.server.tools.arc.tempcon_arc import TempConArc
+from azcam.server.tools.mag.controller_mag import ControllerMag
+from azcam.server.tools.mag.exposure_mag import ExposureMag
+from azcam.server.tools.mag.tempcon_mag import TempConMag
+from azcam.server.tools.ds9display import Ds9Display
+from azcam.server.tools.sendimage import SendImage
+from azcam.server.webtools.webserver.fastapi_server import WebServer
+from azcam.server.webtools.status.status import Status
+from azcam.server.webtools.exptool.exptool import Exptool
 
 from azcam_lbtguiders.gcs import GCS
 
