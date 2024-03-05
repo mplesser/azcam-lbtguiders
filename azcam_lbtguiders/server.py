@@ -9,7 +9,7 @@ import sys
 
 import azcam
 import azcam.utils
-from azcam import exceptions
+import azcam.exceptions
 import azcam.server.server
 import azcam.server.shortcuts
 from azcam.server.cmdserver import CommandServer
@@ -174,7 +174,7 @@ def setup():
         tempcon.temperature_correction = 1
 
     else:
-        raise exceptions.AzcamError("invalid controller type")
+        raise azcam.exceptions.AzCamError("invalid controller type")
 
     controller.camserver.set_server(cshost, csport)
 
@@ -184,7 +184,7 @@ def setup():
     elif contype == "MAG":
         exposure = ExposureMag()
     else:
-        raise exceptions.AzcamError("invalid controller type")
+        raise azcam.exceptions.AzCamError("invalid controller type")
     sendimage = SendImage()
     exposure.filetype = exposure.filetypes["FITS"]
     exposure.image.filetype = exposure.filetypes["FITS"]
