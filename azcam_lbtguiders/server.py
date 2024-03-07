@@ -65,7 +65,7 @@ def setup():
     azcam.db.systemname = "lbtguiders"
     azcam.db.systemfolder = os.path.dirname(__file__)
     azcam.db.systemfolder = azcam.utils.fix_path(azcam.db.systemfolder)
-    azcam.db.datafolder = azcam.utils.get_datafolder(datafolder)
+    azcam.db.datafolder = azcam.utils.get_datafolder()
 
     # enable logging
     logfile = os.path.join(azcam.db.datafolder, "logs", "server.log")
