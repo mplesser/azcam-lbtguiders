@@ -1,14 +1,9 @@
 """
-azcam_lbtguiders logger
+Example to start remote logger for lbtguiders.
 """
 
+from azcam.remote_logger import start_and_serve_tcp
 
-import socketserver
+port = 2454
 
-from azcam.logging_server_tcp import LoggingStreamHandler
-
-port = 2404
-
-print(f"Logging server running on port {port}")
-logging_server = socketserver.TCPServer(("localhost", port), LoggingStreamHandler)
-logging_server.serve_forever()
+start_and_serve_tcp(port)

@@ -9,8 +9,7 @@ This repository contains the *azcam-lbtguiders* *azcam* environment.  It contain
 Download the code (usually into the *azcam* root folder such as `/azcam`) and install.
 
 ```shell
-cd /azcam
-git clone https://github.com/mplesser/azcam-lbtguiders
-cd azcam-lbtguiders
-pip install -e .
+pip install azcam-lbtguiders
 ```
+
+or clone `azcam` and `azcam-lbtguiders` and install locally. See *docs* folder.
