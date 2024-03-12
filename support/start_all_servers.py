@@ -24,9 +24,10 @@ systems = [
 ]
 
 # shell = f"ipython --profile azcamserver -i -m azcam_lbtguiders.server"
-shell = f"python -i -m azcam_lbtguiders.server"
+shell = f"python3.11 -i -m azcam_lbtguiders.server"
 
 for name in systems:
-    wt = f"wt -w azcam --title {name}"
-    cl = f"{wt} {shell} -- -system {name}"
+    # wt = f"wt -w azcam --title {name}"
+    term = f"gnome-terminal --tab --title {name} -- "
+    cl = f"{term} {shell} -- -system {name}"
     os.system(cl)
