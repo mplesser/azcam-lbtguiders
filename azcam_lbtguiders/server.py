@@ -23,7 +23,6 @@ from azcam.server.tools.mag.controller_mag import ControllerMag
 from azcam.server.tools.mag.exposure_mag import ExposureMag
 from azcam.server.tools.mag.tempcon_mag import TempConMag
 from azcam.server.tools.ds9display import Ds9Display
-from azcam.server.tools.sendimage import SendImage
 from azcam.server.webtools.webserver.fastapi_server import WebServer
 from azcam.server.webtools.status.status import Status
 from azcam.server.webtools.exptool.exptool import Exptool
@@ -185,7 +184,6 @@ def setup():
         exposure = ExposureMag()
     else:
         raise azcam.exceptions.AzcamError("invalid controller type")
-    sendimage = SendImage()
     exposure.filetype = exposure.filetypes["FITS"]
     exposure.image.filetype = exposure.filetypes["FITS"]
     exposure.display_image = 0
@@ -198,7 +196,7 @@ def setup():
         exposure.send_image = 1
         remote_imageserver_host = "10.30.7.82"
         remote_imageserver_port = 6543
-        sendimage.set_remote_imageserver(
+        exposure.sendimage.set_remote_imageserver(
             remote_imageserver_host, remote_imageserver_port, "lbtguider"
         )
     exposure.folder = imagefolder
@@ -238,7 +236,7 @@ def setup():
 
     # parameter file
     azcam.db.parameters.read_parfile(parfile)
-    azcam.db.parameters.update_pars("azcamserver")
+    azcam.db.parameters.update_pars()
 
     # define and start command server
     cmdserver = CommandServer()

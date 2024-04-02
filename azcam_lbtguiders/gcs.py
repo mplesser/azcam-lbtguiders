@@ -224,9 +224,11 @@ class GCS(object):
 
     def setsocket(self, flag, host, port=6543):
         if flag == -1:
-            azcam.db.tools["sendimage"].set_remote_imageserver()
+            azcam.db.tools["exposure"].sendimage.set_remote_imageserver()
         else:
-            azcam.db.tools["sendimage"].set_remote_imageserver(host, int(port), "lbtguider")
+            azcam.db.tools["exposure"].sendimage.set_remote_imageserver(
+                host, int(port), "lbtguider"
+            )
         return self.status
 
     def setparameter(self, keyword, value, comment=""):
