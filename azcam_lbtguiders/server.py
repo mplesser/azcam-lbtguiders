@@ -28,6 +28,7 @@ from azcam.server.webtools.status.status import Status
 from azcam.server.webtools.exptool.exptool import Exptool
 
 from azcam_lbtguiders.gcs import GCS
+from azcam_lbtguiders.sendimage_lbtguiders import lbtguiders_send
 
 
 def setup():
@@ -199,6 +200,7 @@ def setup():
         exposure.sendimage.set_remote_imageserver(
             remote_imageserver_host, remote_imageserver_port, "lbtguider"
         )
+        exposure.sendimage.imageserver_send = lbtguiders_send
     exposure.folder = imagefolder
 
     # detector
