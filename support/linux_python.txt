@@ -1,0 +1,19 @@
+Follow https://computingforgeeks.com/install-python-3-11-on-rocky-almalinux-9/ to install python 3.11
+
+alias python=python3.11
+alias pip=pip3.11
+
+# for ipython sqlite error
+yum install sqlite-devel
+
+cd to Python folder
+make clean
+./configure 
+sudo make 
+make install 
+
+pip install azcam-lbtguiders
+
+
+
+
