@@ -1,13 +1,13 @@
 [project]
 name = "azcam-lbtguiders"
-version = "24.2.1"
+version = "24.3"
 description = "Azcam extension for LBTO lbtguiders cameras"
 license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.10"
 keywords = ["ccd", "imaging", "astronomy", "sensors"]
 authors = [{ name = "Michael Lesser" }, { email = "mlesser@arizona.edu" }]
-dependencies = ["azcam"]
+dependencies = ["azcam", "azcam_console"]
 
 [project.urls]
 Documentation = "https://azcam.readthedocs.io/"
