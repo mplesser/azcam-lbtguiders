@@ -23,7 +23,7 @@ from azcam.tools.mag.controller_mag import ControllerMag
 from azcam.tools.mag.exposure_mag import ExposureMag
 from azcam.tools.mag.tempcon_mag import TempConMag
 from azcam.tools.ds9display import Ds9Display
-from azcam.webtools.webserver.fastapi_server import WebServer
+from azcam.webtools.webserver import WebServer
 from azcam.webtools.status.status import Status
 from azcam.webtools.exptool.exptool import Exptool
 
