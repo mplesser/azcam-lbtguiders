@@ -219,11 +219,11 @@ def setup():
 
     # instrument
     instrument = Instrument()
-    instrument.enabled = 0
+    instrument.is_enabled = 0
 
     # telescope
     telescope = Telescope()
-    telescope.enabled = 0
+    telescope.is_enabled = 0
 
     # system header template
     system = System("lbtguiders", template)
