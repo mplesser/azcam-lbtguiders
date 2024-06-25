@@ -231,6 +231,7 @@ def setup():
 
     # display
     display = Ds9Display()
+    display.initialize()
 
     # GCS commands
     gcs = GCS()
