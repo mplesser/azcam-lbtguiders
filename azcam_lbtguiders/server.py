@@ -246,9 +246,9 @@ def setup():
     cmdserver.port = cmdserverport
     cmdserver.case_insensitive = 1
     azcam.log(f"Starting cmdserver - listening on port {cmdserver.port}")
-    # cmdserver.welcome_message = "Welcome - azcam-lbtguiders server"
-    cmdserver.start()
+    azcam.db.tools["api"].initialize_api()
     azcam.db.default_tool = "gcs"
+    cmdserver.start()
 
     # web server
     if 1:
