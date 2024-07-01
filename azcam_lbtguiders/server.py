@@ -261,6 +261,12 @@ def setup():
         exptool = Exptool(webserver)
         exptool.initialize()
 
+    # azcammonitor
+    azcam.db.monitor.proc_path = (
+        "/azcam/azcam-lbtguiders/support/start_server_lbtguiders_1g.py"
+    )
+    azcam.db.monitor.register()
+
     # GUIs
     if 0:
         import azcam_lbtguiders.start_azcamtool
