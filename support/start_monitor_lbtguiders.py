@@ -6,7 +6,8 @@ import subprocess
 
 OPTIONS = "./parameters_monitor_lbtguiders.ini"
 
-CMD = f"python -m azcam.monitor -- -configfile {OPTIONS}"
+# CMD = f"python -m azcam.monitor -- -configfile {OPTIONS}"
+CMD = f"ipython -i -m azcam.monitor -- -configfile {OPTIONS}"
 
 p = subprocess.Popen(
     CMD,

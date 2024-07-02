@@ -28,11 +28,11 @@ from azcam.webtools.status.status import Status
 from azcam.webtools.exptool.exptool import Exptool
 
 from azcam_lbtguiders.gcs import GCS
-from azcam_lbtguiders.sendimage_lbtguiders import lbtguiders_send
 
 
 def setup():
-    # command line arguments
+
+    # parse command line arguments
     try:
         i = sys.argv.index("-system")
         option = sys.argv[i + 1]
@@ -200,7 +200,6 @@ def setup():
         exposure.sendimage.set_remote_imageserver(
             remote_imageserver_host, remote_imageserver_port, "lbtguider"
         )
-        exposure.sendimage.imageserver_send = lbtguiders_send
     exposure.folder = imagefolder
 
     # detector
@@ -251,7 +250,7 @@ def setup():
     cmdserver.start()
 
     # web server
-    if 1:
+    if 0:
         webserver = WebServer()
         webserver.port = 2403  # common port for all configurations
         webserver.index = os.path.join(azcam.db.systemfolder, "index_lbtguiders.html")
@@ -262,9 +261,6 @@ def setup():
         exptool.initialize()
 
     # azcammonitor
-    azcam.db.monitor.proc_path = (
-        "/azcam/azcam-lbtguiders/support/start_server_lbtguiders_1g.py"
-    )
     azcam.db.monitor.register()
 
     # GUIs
