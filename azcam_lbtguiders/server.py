@@ -23,9 +23,7 @@ from azcam.tools.mag.controller_mag import ControllerMag
 from azcam.tools.mag.exposure_mag import ExposureMag
 from azcam.tools.mag.tempcon_mag import TempConMag
 from azcam.tools.ds9display import Ds9Display
-from azcam.webtools.webserver import WebServer
-from azcam.webtools.status.status import Status
-from azcam.webtools.exptool.exptool import Exptool
+from azcam.web.webserver_dash import WebServer
 
 from azcam_lbtguiders.gcs import GCS
 
@@ -253,12 +251,7 @@ def setup():
     if 0:
         webserver = WebServer()
         webserver.port = 2403  # common port for all configurations
-        webserver.index = os.path.join(azcam.db.systemfolder, "index_lbtguiders.html")
         webserver.start()
-        webstatus = Status(webserver)
-        webstatus.initialize()
-        exptool = Exptool(webserver)
-        exptool.initialize()
 
     # azcammonitor
     azcam.db.monitor.register()
